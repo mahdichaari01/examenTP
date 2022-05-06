@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Liste des etudiants ✅</h1>
+
+    <a href="{{path('app_add')}}">ajouter</a>
+    <table>
+        <tr>
+            <td>FirstName</td>
+            <td>LastName</td>
+            <td>Section</td>
+            <td>action</td>
+        </tr>
+        {% for etudiant in etudiants %}
+            <tr>
+                <td>{{etudiant.getPrenom()}}</td><td>{{etudiant.getNom()}}</td>
+                <td>
+                    {%if etudiant.getSection()%}
+                        {{etudiant.getSection.getDesignation()}}
+                    {%else%}
+                        Etudiant non encore affecté à une section
+                    {%endif%}
+                </td>
+                <td>
+                    <a href="{{path('app_edit',{slug :etudiant.getId()})}}">edit</a>
+                    <a href="{{path('app_delete',{slug :etudiant.getId()}) }}">delete</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
