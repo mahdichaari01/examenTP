@@ -22,6 +22,7 @@ class AddController extends AbstractController
         return $this->render('add/index.html.twig', [
             "sections" => $section
         ]);
+
     }
 
     #[Route('/add', name: 'app_add_post', methods: ['POST'])]
