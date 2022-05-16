@@ -9,12 +9,29 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Ajouter un etudiant ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/mahdi/OneDrive/Documents/Education/ExamenTPWeb/examenTP/src/Controller/AddController.php'|file_link(0) }}">src/Controller/AddController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/mahdi/OneDrive/Documents/Education/ExamenTPWeb/examenTP/templates/add/index.html.twig'|file_link(0) }}">templates/add/index.html.twig</a></code></li>
-    </ul>
+    <form action="{%block edit%}/add{%endblock%}" method="POST">
+        <div class="form-group">
+            <label for="nom">nom</label>
+            <input name="nom" class="form-control" id="nom" placeholder="Nom" {% block nom %}{% endblock %}>
+        </div>
+        <div class="form-group">
+            <label for="prenom" >Prenom</label>
+            <input name="prenom" class="form-control" id="prenom" placeholder="Prenom"  {% block prenom %}{% endblock %}>
+        </div>
+        <div class="form-group">
+            <label for="section">Section</label>
+            <select name="section" id="section" class="custom-select">
+                <option selected>Selectionner Section</option>
+                {%for section in sections%}
+                <option value="{{section.id}}" {%block section%}{%endblock%}>
+                    {{section.designation}}
+                </option>
+                {%endfor%}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 {% endblock %}
