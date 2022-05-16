@@ -38,4 +38,11 @@
         {% endfor %}
     </table>
 </div>
+    <script>
+        document.querySelectorAll('td')
+            .forEach(e => e.addEventListener("click", function() {
+                // Here, `this` refers to the element the event was hooked on
+                e.classList.toggle("highlight");
+            }));
+    </script>
 {% endblock %}
